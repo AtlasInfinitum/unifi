@@ -28,18 +28,6 @@ for dependency in "${dependencies[@]}"; do
     fi
 done
 
-if ! sudo docker info > /dev/null 2>&1; then
-  echo "This script uses docker, and it isn't running - please start docker and try again!"
-  exit 1
-fi
-
-docker compose &>/dev/null 
-
-if [ $? -ne 0 ]; then
-    echo "You need to install docker compose (v2) to continue"
-    exit 1
-fi
-
 #ask for installation directory, default to home
 read -p "Enter an absolute path to place the installation directory (or press Enter for the home folder): " user_input
 path=${user_input:-$HOME}
